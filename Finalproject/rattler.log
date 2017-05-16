@@ -1,0 +1,52 @@
+	Exporter version: 4.6.1, Blender version: 2.78 (sub 0)
+========= Conversion from Blender to Babylon.js =========
+	Scene settings used:
+		selected layers only:  false
+		flat shading entire scene:  false
+		inline textures:  false
+		texture directory:  C:\Users\USER\Desktop\BinusInter\Sem 4\Computer Graphics\Lab\Finalproject\
+	Python World class constructor completed
+	processing begun of mesh:  Body_2
+		processing begun of Standard material:  default.smooth02
+			Diffuse texture found "Kd.004"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+	WARNING: Error encountered processing image file:  , Error:  [Errno 2] No such file or directory: 'tex02.tga'
+		processing begun of Standard material:  Rattle08
+		processing begun of Standard material:  default.smooth04
+		processing begun of Standard material:  Belly05
+			Diffuse texture found "Kd.002"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+	WARNING: Error encountered processing image file:  , Error:  [Errno 2] No such file or directory: 'tex05.tga'
+		processing begun of Standard material:  Slit03
+			Diffuse texture found "Kd.003"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+	WARNING: Error encountered processing image file:  , Error:  [Errno 2] No such file or directory: 'tex03.tga'
+		processing begun of Standard material:  Nose07
+			Diffuse texture found "Kd"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+	WARNING: Error encountered processing image file:  , Error:  [Errno 2] No such file or directory: 'tex07.tga'
+		processing begun of Standard material:  Eye00
+			Diffuse texture found "Kd.006"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+	WARNING: Error encountered processing image file:  , Error:  [Errno 2] No such file or directory: 'tex00.tga'
+		processing begun of Standard material:  Eye01
+			Diffuse texture found "Kd.005"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+	WARNING: Error encountered processing image file:  , Error:  [Errno 2] No such file or directory: 'tex01.tga'
+		processing begun of Standard material:  default.smooth06
+			Diffuse texture found "Kd.001"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+	WARNING: Error encountered processing image file:  , Error:  [Errno 2] No such file or directory: 'tex06.tga'
+		processing begun of multimaterial:  rattler.Multimaterial#0
+		num positions      :  6576
+		num normals        :  6576
+		num uvs            :  13152
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  8508
+	processing begun of camera (FreeCamera):  Camera
+	processing begun of light (POINT):  Lamp
+========= Writing of scene file started =========
+========= Writing of scene file completed =========
+========= end of processing =========
+elapsed time:  0 min, 0.4393 secs

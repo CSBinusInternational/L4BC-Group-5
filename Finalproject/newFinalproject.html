@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Snake Game</title>
+	<script src="babylon.js"></script>
+	<script src="hand-1.3.7.js"></script>
+	<script src="babylonObjLoader.js" ></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<canvas id="mycanvas"></canvas>
+	<script>
+		var canvas = document.getElementById("mycanvas");
+		var engine = new BABYLON.Engine(canvas, true);
+
+		var createScene = function() {
+			var scene = new BABYLON.Scene(engine);
+				 var ground = BABYLON.Mesh.CreateGround("ground1", 100, 100, 100, scene);
+			//var camera = new BABYLON.FreeCamera("camera2", new BABYLON.Vector3(0,5,-10), scene);
+			/*var camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 1, -15), scene);
+			scene.activeCamera = camera;scene.activeCamera.attachControl(canvas);
+			scene.activeCamera.keysUp.push(87); 
+			*/
+			var camera = new BABYLON.ArcRotateCamera("camera",0,0,0,BABYLON.Vector3.Zero(0,10,0), scene);
+			//var camera = new BABYLON.TouchCamera("camera2", new BABYLON.Vector3(0, 10, 0), scene);
+			//var camera = new BABYLON.GamepadCamera("camera2", new BABYLON.Vector3(0, 15, -45), scene);
+			//var camera = new BABYLON.DeviceOrientationCamera("camera", new BABYLON.Vector3(0, 1, -15), scene);
+			//var camera = new BABYLON.FollowCamera("camera2", new BABYLON.Vector3(0, 15, -45), scene);
+    		//camera.lockedTarget = model;
+			//camera.setPosition(new BABYLON.Vector3(0,5,-10));
+
+			camera.setTarget(BABYLON.Vector3.Zero(),scene);
+
+			camera.attachControl(canvas,false);
+
+			var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0,1,0), scene);
+
+			light.intesity = 0.5;
+
+			var body = BABYLON.MeshBuilder.CreatePolyhedron("body", {type: 10, size: 0.7},scene);
+			var materialBody = new BABYLON.StandardMaterial("bodyMat",scene);
+			materialBody.diffuseColor = new BABYLON.Color3(1,0,0);
+			body.material = materialBody;
+			body.position.y = 5;
+			body.position.x = -50;
+			body.rotation.x = Math.PI/4;
+			body.rotation.z = .19;
+
+			var head = BABYLON.Mesh.CreateBox("head",0.7,scene);
+			var materialHead = new BABYLON.StandardMaterial("HeadMat",scene);
+			materialHead.diffuseColor = new BABYLON.Color3(.5,.2,0.3);
+			head.material = materialHead;
+			head.position.x = -4.5;
+			head.position.z = -3;
+			head.position.y = 1;
+
+
+
+			var apple;
+			BABYLON.SceneLoader.ImportMesh("","Finalproject/", "apple1.obj", scene, function (meshes) { 
+   				apple = meshes[0];
+   				apple.parent = sphere1;
+   					/*engine.runRenderLoop(function() {
+			//scene.activeCamera.alpha += .01;
+				apple.rotation.y +=0.1;
+			scene.render();
+
+				});
+*/
+   			});
+
+   			var sphere1 = BABYLON.Mesh.CreateSphere("sphere1",1,1, scene);
+			sphere1.position.y = 0.7;
+			sphere1.material = myMaterial;
+			var myMaterial = new BABYLON.StandardMaterial("myMaterial", scene);
+			myMaterial.diffuseColor = new BABYLON.Color3(0, 1, 0);
+			
+			//sphere1.parent = apple;
+		
+
+			var snake ;
+			BABYLON.SceneLoader.ImportMesh("","Finalproject/", "alphaSnake.babylon", scene, function (newMeshes, particleSystems, skeletons) {
+
+            snake = newMeshes[0];
+
+            snake.position.y = 2;
+            snake.rotation.z = -0.07;
+            snake.rotation.y = 10;
+            snake.rotation.x = 25;
+            snake.position = new BABYLON.Vector3(0, 0, 0);  
+            head.parent = snake;
+                        
+
+            var isvisible = false;
+            window.onkeyup = function(event) {
+            	event = event || window.event;
+				var keyCode = event.which || event.keyCode;
+
+				switch(keyCode) {
+					// W key
+					case 87:
+						snake.position.x +=3;
+						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
+						if (head.intersectsMesh(sphere1, false)) {
+  							isvisible = true;
+						}				
+						break;
+
+					// A Key
+					case 65:
+						snake.position.z +=3;
+						
+						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
+						
+						break;
+
+					// S key
+					case 83:
+						snake.position.x -=3;
+						
+						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
+						
+						break;
+
+					// D key
+					case 68:
+						snake.position.z -=3;						
+						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
+						
+						break;
+
+										
+				}
+			};
+
+			scene.registerBeforeRender(function(){
+				if(isvisible == true) {
+					sphere1.scaling.x = 5;
+					sphere1.scaling.y = 5;
+					sphere1.scaling.z = 5;
+					sphere1.position.y = 2.5;
+					sphere1.material = myMaterial;
+					apple.scaling.x = 0;
+					apple.scaling.y = 0;
+					apple.scaling.y = 0;
+				}			
+            });
+        
+        });
+
+			
+			return scene;
+		};
+
+		var scene = createScene();
+
+		engine.runRenderLoop(function() {
+			//scene.activeCamera.alpha += .01;
+		/*	if(isvisible == true) {
+				sphere1.scaling.x = 0;
+			}
+		*/
+			scene.render();
+
+		});
+
+		window.addEventListener("resize",function(){
+			engine.resize();
+		});
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Snake Game</title>
+	<script src="babylon.js"></script>
+	<script src="hand-1.3.7.js"></script>
+	<script src="babylonObjLoader.js" ></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<canvas id="mycanvas"></canvas>
+<script src="timer.js"></script>
+	<script>
+		var canvas = document.getElementById("mycanvas");
+		var engine = new BABYLON.Engine(canvas, true);
+
+		// var createScene = function() {
+			var scene = new BABYLON.Scene(engine);
+
+			// var camera = new BABYLON.ArcRotateCamera("camera",0,0,0,BABYLON.Vector3.Zero(0,1,0), scene);
+			// camera.setPosition(new BABYLON.Vector3(0,100,-100));
+			// camera.attachControl(canvas,false);
+ 			var camera = new BABYLON.FollowCamera("camera", new BABYLON.Vector3(0, 15, -45), scene);
+		
+			// Maze 
+			// South Wall
+			var southwall = new BABYLON.Mesh.CreateBox("southwall",3,scene); southwall.position.z = -99; 
+				southwall.position.y = 5; 
+				southwall.scaling.x = 67;
+				southwall.scaling.y = 4;
+
+			// North Wall
+			var northwall = new BABYLON.Mesh.CreateBox("northwall",3,scene); northwall.position.z = 99; 
+				northwall.position.y = 5; 
+				northwall.scaling.x = 67;
+				northwall.scaling.y = 4;
+
+			// East Wall
+			var eastwall = new BABYLON.Mesh.CreateBox("eastwall",3,scene); eastwall.position.x = 99; 
+				eastwall.position.y = 5;		   
+				eastwall.scaling.z = 65;
+				eastwall.scaling.y = 4;
+
+			// West Wall
+			var westwall = new BABYLON.Mesh.CreateBox("westwall",3,scene); westwall.position.x = -99; 
+				westwall.position.y = 5;
+				westwall.scaling.z = 65;
+				westwall.scaling.y = 4;
+
+			// Wall North To Soutch #1
+			var wall1 = new BABYLON.Mesh.CreateBox("wall1",3,scene);			
+			wall1.position.x = -80;
+			wall1.scaling.z = 10; 
+			wall1.position.z = -85;
+			wall1.position.y = 5;
+			wall1.scaling.y = 4;
+
+			var wall2 = new BABYLON.Mesh.CreateBox("wall2",3,scene);			
+			wall2.position.x = -90;
+			wall2.scaling.z = 7; 
+			wall2.position.z = -45;
+			wall2.position.y = 5;
+			wall2.scaling.y = 4;
+			wall2.rotation.y = 4.7;
+			//var childnorthtosouth1 = new BABYLON.Mesh.CreateBox("childnorthtosouth1",3,scene); childnorthtosouth1.position.y = 2.6; 
+			//childnorthtosouth1.position.x = -80;
+			//childnorthtosouth1.scaling.z = 25; 
+			//childnorthtosouth1.position.z = -60;
+
+			var wall3 = new BABYLON.Mesh.CreateBox("wall3",3,scene);
+			wall3.position.x = -80;
+			wall3.scaling.z = 35;
+			wall3.position.z = 30;
+			wall3.position.y = 5;
+			wall3.scaling.y = 4;
+
+			var wall4 = new BABYLON.Mesh.CreateBox("wall4",3,scene);
+			wall4.position.x = -60;
+			wall4.scaling.z = 20;
+			wall4.position.z = -50;
+			wall4.position.y = 5;
+			wall4.scaling.y = 4;
+
+			var wall5 = new BABYLON.Mesh.CreateBox("wall5",3,scene);
+			wall5.position.x = -55.5;
+			wall5.scaling.z = 18;
+			wall5.position.z = -21.1;
+			wall5.rotation.y = 4.72;
+			wall5.position.y = 5;
+			wall5.scaling.y = 4;
+
+			var wall6 = new BABYLON.Mesh.CreateBox("wall6",3,scene);
+			wall6.position.x = -60;
+			wall6.scaling.z = 15;
+			wall6.position.z = 20;
+			wall6.position.y = 5;
+			wall6.scaling.y = 4;
+
+			var wall7 = new BABYLON.Mesh.CreateBox("wall7",3,scene);
+			wall7.position.x = -60;
+			wall7.scaling.z = 15;
+			wall7.position.z = 78;
+			wall7.position.y = 5;
+			wall7.scaling.y = 4;
+
+			var wall8 = new BABYLON.Mesh.CreateBox("wall7",3,scene);
+			wall8.position.x = -30;
+			wall8.scaling.z = 15;
+			wall8.position.z = -60;
+			wall8.position.y = 5;
+			wall8.scaling.y = 4;
+
+			var wall9 = new BABYLON.Mesh.CreateBox("wall9",3,scene);
+			wall9.position.x = -45;
+			wall9.scaling.z = 11;
+			wall9.position.z = -1.2;
+			wall9.rotation.y = 4.72;
+			wall9.position.y = 5;
+			wall9.scaling.y = 4;
+
+			var wall10 = new BABYLON.Mesh.CreateBox("wall10",3,scene);
+			wall10.position.x = -30;
+			wall10.scaling.z = 5;
+			wall10.position.z = 5;
+			wall10.position.y = 5;
+			wall10.scaling.y = 4;
+
+			var wall11 = new BABYLON.Mesh.CreateBox("wall11",3,scene);
+			wall11.position.x = -30;
+			wall11.scaling.z = 20;
+			wall11.position.z = 55;
+			wall11.position.y = 5;
+			wall11.scaling.y = 4;
+
+			var wall12 = new BABYLON.Mesh.CreateBox("wall12",3,scene);
+			wall12.position.x = -45;
+			wall12.scaling.z = 11;
+			wall12.position.z = 43;
+			wall12.rotation.y = 4.72;
+			wall12.position.y = 5;
+			wall12.scaling.y = 4;
+
+			var wall13 = new BABYLON.Mesh.CreateBox("wall13",3,scene);
+			wall13.position.x = -10;
+			wall13.scaling.z = 5; 
+			wall13.position.z = -92;
+			wall13.position.y = 5;
+			wall13.scaling.y = 4;
+
+			var wall14 = new BABYLON.Mesh.CreateBox("wall14",3,scene);
+			wall14.position.x = -10;
+			wall14.scaling.z = 10; 
+			wall14.position.z = -70;
+			wall14.position.y = 1.5;
+			wall14.position.y = 5;
+			wall14.scaling.y = 4;
+
+			var wall15 = new BABYLON.Mesh.CreateBox("wall15",3,scene);
+			wall15.position.x = -19;
+			wall15.scaling.z = 7; 
+			wall15.position.z = -55;
+			wall15.position.y = 5;
+			wall15.scaling.y = 4;
+			wall15.rotation.y = 4.7;
+
+			var wall16 = new BABYLON.Mesh.CreateBox("wall16",3,scene);
+			wall16.position.x = -10;
+			wall16.scaling.z = 5; 
+			wall16.position.z = -30;
+			wall16.position.y = 5;
+			wall16.scaling.y = 4;
+
+			var wall17 = new BABYLON.Mesh.CreateBox("wall17",3,scene);
+			wall17.position.x = -19;
+			wall17.scaling.z = 7; 
+			wall17.position.z = -21.2;
+			wall17.position.y = 5;
+			wall17.scaling.y = 4;
+			wall17.rotation.y = 4.7;
+
+			var wall18 = new BABYLON.Mesh.CreateBox("wall18",3,scene);
+			wall18.position.x = -10;
+			wall18.scaling.z = 15; 
+			wall18.position.z = 19;
+			wall18.position.y = 5;
+			wall18.scaling.y = 4;
+
+			var wall19 = new BABYLON.Mesh.CreateBox("wall19",3,scene);
+			wall19.position.x = 10;
+			wall19.scaling.z = 20; 
+			wall19.position.z = -50;
+			wall19.position.y = 5;
+			wall19.scaling.y = 4;
+
+			var wall20 = new BABYLON.Mesh.CreateBox("wall20",3,scene);
+			wall20.position.x = 10;
+			wall20.scaling.z = 20; 
+			wall20.position.z = 55.4;
+			wall20.position.y = 5;
+			wall20.scaling.y = 4;
+
+			var wall21 = new BABYLON.Mesh.CreateBox("wall21",3,scene);
+			wall21.position.x = -10;
+			wall21.scaling.z = 14; 
+			wall21.position.z = 83.7;
+			wall21.rotation.y = 4.7;
+			wall21.position.y = 5;
+			wall21.scaling.y = 4;
+
+			var wall22 = new BABYLON.Mesh.CreateBox("wall22",3,scene);
+			wall22.position.x = 70;
+			wall22.scaling.z = 18; 
+			wall22.position.z = -73;
+			wall22.position.y = 5;
+			wall22.scaling.y = 4;
+
+			var wall23 = new BABYLON.Mesh.CreateBox("wall23",3,scene);
+			wall23.position.x = 25;
+			wall23.scaling.z = 10; 
+			wall23.position.z = -78.3;
+			wall23.rotation.y = 4.7;
+			wall23.position.y = 5;
+			wall23.scaling.y = 4;
+
+			var wall24 = new BABYLON.Mesh.CreateBox("wall24",3,scene);
+			wall24.position.x = 40;
+			wall24.scaling.z = 20; 
+			wall24.position.z = -47.9;
+			wall24.rotation.y = 4.7;
+			wall24.position.y = 5;
+			wall24.scaling.y = 4;
+
+			var wall25 = new BABYLON.Mesh.CreateBox("wall25",3,scene);
+			wall25.position.x = 40;
+			wall25.scaling.z = 10; 
+			wall25.position.z = -30;
+			wall25.rotation.y = 4.7;
+			wall25.position.y = 5;
+			wall25.scaling.y = 4;
+
+			var wall26 = new BABYLON.Mesh.CreateBox("wall26",3,scene);
+			wall26.position.x = 40;
+			wall26.scaling.z = 5; 
+			wall26.position.z = -23;
+			wall26.position.y = 5;
+			wall26.scaling.y = 4;
+
+			var wall27 = new BABYLON.Mesh.CreateBox("wall27",3,scene);
+			wall27.position.x = 65.5;
+			wall27.scaling.z = 23; 
+			wall27.position.z = 40;
+			wall27.rotation.y = 4.7;
+			wall27.position.y = 5;
+			wall27.scaling.y = 4;
+
+			var wall28 = new BABYLON.Mesh.CreateBox("wall28",3,scene);
+			wall28.position.x = 40;
+			wall28.scaling.z = 13; 
+			wall28.position.z = 80.5;
+			wall28.position.y = 5;
+			wall28.scaling.y = 4;
+
+			var wall29 = new BABYLON.Mesh.CreateBox("wall29",3,scene);
+			wall29.position.x = 58;
+			wall29.scaling.z = 13; 
+			wall29.position.z = 60;
+			wall29.rotation.y = 4.7;
+			wall29.position.y = 5;
+			wall29.scaling.y = 4;
+
+	
+			var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0,1,0), scene);
+			light.intesity = 0.5;
+
+			var skybox = BABYLON.Mesh.CreateBox("skyBox", 1000.0, scene);
+			var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+			skyboxMaterial.backFaceCulling = false;
+			skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("skybox/skybox", scene);
+			skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+			skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+			skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+			skybox.material = skyboxMaterial;
+
+			// Creation of Sonic
+			var snake ;
+			BABYLON.SceneLoader.ImportMesh("","Finalproject/", "test.babylon", scene, function (newMeshes, particleSystems, skeletons) {
+
+          	snake = newMeshes[0];
+            snake.rotation.y = Math.PI; 
+
+            camera.lockedTarget = snake;
+           	camera.radius = 50; // how far from the object to follow
+			camera.heightOffset = 15; // how high above the object to place the camera
+            scene.activeCamera = camera;
+            });    
+			// Creation of Apple
+		
+	            var apple2;
+				BABYLON.SceneLoader.ImportMesh("","Finalproject/", "apple.obj", scene, function (newMeshes, particleSystems, skeletons) { 
+					var x = Math.floor(Math.random() * 145)-99;		
+					var z = Math.floor(Math.random() * 145)-99;
+					// var x2 = x * -1;	
+
+	   				apple2 = newMeshes[0];
+	   				apple2.position.x = x;
+	   				apple2.position.z = z;
+				});    
+
+				var ground = new BABYLON.Mesh.CreateGround("ground",200,200,200,scene);
+
+			var t = new Timer(1000, scene, function() { 
+			camera.radius = 50; // how far from the object to follow
+			camera.heightOffset = 15; // how high above the object to place the camera
+			t.reset();
+		});
+			// Boolean Expression
+            var up=false, down=false, left=false, right=false;
+            var moving=false;
+
+            	// Movement
+				window.onkeydown = function(event) {
+            	event = event || window.event;
+				var keyCode = event.which || event.keyCode;
+
+				switch(keyCode) {
+					// W key
+					case 87:
+						up = true;		
+						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);	
+						if (snake.intersectsMesh(northwall, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }	
+						 if (snake.intersectsMesh(wall1, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }	
+						 if (snake.intersectsMesh(wall2, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }	
+						 if (snake.intersectsMesh(wall3, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall4, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall5, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall6, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall7, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall8, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall9, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall10, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall11, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall12, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall13, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall14, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall15, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall16, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall17, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall18, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall19, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall20, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall21, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall22, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall23, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall24, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall25, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall26, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall27, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall28, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						 if (snake.intersectsMesh(wall29, false)) {
+						 	up = false;
+						 	snake.position.z +=-5;
+						 }
+						break;
+
+					// A Key
+					case 65:
+						left = true;						
+						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);		
+						if (snake.intersectsMesh(westwall, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }	
+						 if (snake.intersectsMesh(wall1, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall2, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }	
+						 if (snake.intersectsMesh(wall3, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }	
+						 if (snake.intersectsMesh(wall4, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }	
+						 if (snake.intersectsMesh(wall5, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }	
+						 if (snake.intersectsMesh(wall6, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }	
+						 if (snake.intersectsMesh(wall7, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }	
+						 if (snake.intersectsMesh(wall8, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }	
+						 if (snake.intersectsMesh(wall9, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall10, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }	
+						 if (snake.intersectsMesh(wall11, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall12, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall13, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall14, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall15, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }	
+						 if (snake.intersectsMesh(wall16, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall17, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall18, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall19, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall20, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall21, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall22, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall23, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall24, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall25, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall26, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall27, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall28, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						 if (snake.intersectsMesh(wall29, false)) {
+						 	left = false;
+						 	snake.position.x +=5;
+						 }
+						break;
+
+					// S key
+					case 83:					
+						down = true;						
+						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);	
+						if (snake.intersectsMesh(southwall, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall1, false)) {
+							down = false;
+							snake.position.z +=5;
+						}	
+						if (snake.intersectsMesh(wall2, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall3, false)) {
+							down = false;
+							snake.position.z +=5;
+						}	
+						if (snake.intersectsMesh(wall4, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall5, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall6, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall7, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall8, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall9, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall10, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall11, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall12, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall13, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall14, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall15, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall16, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall17, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall18, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall19, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall20, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall21, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall22, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall23, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall24, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall25, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall26, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall27, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall28, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall29, false)) {
+							down = false;
+							snake.position.z +=5;
+						}
+						break;
+
+					// D key
+					case 68:
+						right = true;											
+						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
+						if (snake.intersectsMesh(eastwall, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall1, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall2, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall3, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall4, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall5, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall6, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall7, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall8, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall9, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall10, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall11, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall12, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall13, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall14, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall15, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall16, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall17, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall18, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall19, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall20, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall21, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall22, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall23, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall24, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall25, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall26, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall27, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall28, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						if (snake.intersectsMesh(wall29, false)) {
+							right = false;
+							snake.position.x +=-5;
+						}
+						break;	
+
+					// C Key
+						case 67:
+						camera.radius = 0; 
+						camera.heightOffset = 50; 
+						t.start();
+						break;
+				}
+			};
+
+
+			window.onkeyup = function(event) {
+            	event = event || window.event;
+				var keyCode = event.which || event.keyCode;
+
+				switch(keyCode) {
+					// W key
+					case 87:					
+						up = false;		
+						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
+						if (snake.intersectsMesh(northwall, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall1, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall2, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall3, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall4, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall5, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall6, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall7, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall8, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall9, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall10, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall11, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall12, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall13, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall14, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall15, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall16, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall17, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall18, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall19, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall20, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall21, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall22, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall23, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall24, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall25, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall26, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall27, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall28, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						if (snake.intersectsMesh(wall29, false)) {
+							up = true;
+							snake.position.z +=-5;
+						}
+						break;
+
+					// A Key
+					case 65:						
+						left = false;						
+						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
+						if (snake.intersectsMesh(westwall, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall1, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall2, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall3, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall4, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall5, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall6, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall7, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall8, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall9, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall10, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall11, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall12, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall13, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall14, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall15, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall16, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall17, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall18, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall19, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall20, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall21, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall22, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall23, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall24, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall25, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall26, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall27, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall28, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						if (snake.intersectsMesh(wall29, false)) {
+							left = true;
+							snake.position.x +=5;
+						}
+						break;
+
+					// S key
+					case 83:				
+						down = false;						
+						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
+						if (snake.intersectsMesh(southwall, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall1, false)) {
+							down = true;
+							snake.position.z +=5;
+						}	
+						if (snake.intersectsMesh(wall2, false)) {
+							down = true;
+							snake.position.z +=5;
+						}	
+						if (snake.intersectsMesh(wall3, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall4, false)) {
+							down = true;
+							snake.position.z +=5;
+						}	
+						if (snake.intersectsMesh(wall5, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall6, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall7, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall8, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall9, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall10, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall11, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall12, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall13, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall14, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall15, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall16, false)) {
+							down = true;
+							snake.position.z +=5;
+						}	
+						if (snake.intersectsMesh(wall17, false)) {
+							down = true;
+							snake.position.z +=5;
+						}	
+						if (snake.intersectsMesh(wall18, false)) {
+							down = true;
+							snake.position.z +=5;
+						}	
+						if (snake.intersectsMesh(wall19, false)) {
+							down = true;
+							snake.position.z +=5;
+						}	
+						if (snake.intersectsMesh(wall20, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall21, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall22, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall23, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall24, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall25, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall26, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall27, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall28, false)) {
+							down = true;
+							snake.position.z +=5;
+						}
+						if (snake.intersectsMesh(wall29, false)) {
+							down = true;
+							snake.position.z +=5;
+						}			
+						break;
+
+					// D key
+					case 68:				
+						right = false;											
+						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
+						if (snake.intersectsMesh(eastwall, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall1, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall2, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall3, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall4, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall5, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall6, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall7, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall8, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall9, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall10, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall11, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall12, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall13, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall14, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall15, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall16, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall17, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall18, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall19, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall20, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall21, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall22, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall23, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall24, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall25, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall26, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall27, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall28, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						if (snake.intersectsMesh(wall29, false)) {
+							right = true;
+							snake.position.x +=-5;						
+						}
+						break;	
+
+					// C Key
+						case 67:
+						camera.radius = 0; 
+						camera.heightOffset = 50; 
+						t.start();
+						break;
+				}
+			};
+				
+				
+			
+		// 	return scene;
+		// }
+		
+		// var scene = createScene();
+		engine.runRenderLoop(function() {
+			if(moving)
+			{
+				if (snake.intersectsMesh(apple2, false)) {
+  					apple2.dispose();
+  					canvas2 = new BABYLON.ScreenSpaceCanvas2D(scene, {
+			        	id: "mycanvas",
+			        	size: new BABYLON.Size(500, 500),
+			        	backgroundFill: "#4040408F",
+			        	backgroundRoundRadius: 50,
+			        	x : 250,
+			        	y : 250,
+			        	children: [
+				            new BABYLON.Text2D("Congratulations", {
+				                id: "text",
+				                marginAlignment: "h: center, v:center",
+				                fontName: "50pt Arial",
+				            })
+			        	]
+	    			})
+  								  							
+				}
+				if (apple2.intersectsMesh(southwall, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(northwall, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(eastwall, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(westwall, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall1, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall2, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall3, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall4, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall5, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall6, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall7, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall8, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall9, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall10, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall11, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall12, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall13, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall14, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall15, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall16, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall17, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall18, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall19, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall20, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall21, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall22, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall23, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall24, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall25, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall26, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall27, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall28, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+  				if (apple2.intersectsMesh(wall29, false)) {
+  					var x = Math.floor(Math.random() * 150)-99;		
+					var z = Math.floor(Math.random() * 150)-99;
+  					apple2.position.x = x;
+  					apple2.position.z = z;
+  				}
+
+				if (snake.intersectsMesh(northwall, false)) {
+					up = false;
+					moving = false;	
+				}
+				if (snake.intersectsMesh(eastwall, false)) {
+					right = false;
+					moving = false;	
+				}
+				if (snake.intersectsMesh(westwall, false)) {
+					left = false;	
+					moving = false;
+				}
+				if (snake.intersectsMesh(southwall, false)) {
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall1, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall2, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall3, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall4, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall5, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall6, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall7, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall8, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall9, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall10, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall11, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall12, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall13, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall14, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall15, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall16, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall17, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall18, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall19, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall20, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall21, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall22, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall23, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall24, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall25, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall26, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall27, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall28, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+				if (snake.intersectsMesh(wall29, false)) {
+					up = false;
+					left = false;
+					right = false;
+					down = false;
+					moving = false;		
+				}
+
+			}
+
+			
+			if(up)
+			{
+				snake.position.z += 0.5;
+				moving = true;
+			}
+			if(down)
+			{
+				snake.position.z -= 0.5;
+				moving = true;
+			}
+			if(left)
+			{
+				snake.position.x -= 0.5;
+				moving = true;
+			}
+			if(right)
+			{
+				snake.position.x += 0.5;
+				moving = true;
+			}
+
+
+
+			// apple2.rotation.y +=0.1;
+			scene.render();
+
+		});
+
+		window.addEventListener("resize",function(){
+			engine.resize();
+		});
+
+	</script>
+</body>
+</html>

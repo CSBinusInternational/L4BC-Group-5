@@ -1,0 +1,71 @@
+	Exporter version: 4.6.1, Blender version: 2.78 (sub 0)
+========= Conversion from Blender to Babylon.js =========
+	Scene settings used:
+		selected layers only:  false
+		flat shading entire scene:  false
+		inline textures:  false
+		texture directory:  C:\Users\USER\Desktop\BinusInter\Sem 4\Computer Graphics\Lab\priwan\
+	Python World class constructor completed
+	processing begun of skeleton:  Armature, id:  0
+		processing begun of bone:  Bone, index:  0
+		processing begun of bone:  Bone.001, index:  1
+		processing begun of bone:  Bone.002, index:  2
+		processing begun of bone:  Bone.003, index:  3
+		processing begun of bone:  Bone.004, index:  4
+		processing begun of bone:  Bone.005, index:  5
+		processing begun of bone:  Bone.006, index:  6
+		processing begun of bone:  Bone.007, index:  7
+		processing begun of bone:  Bone.008, index:  8
+		processing begun of bone:  Bone.009, index:  9
+		processing begun of bone:  Bone.010, index:  10
+		processing begun of bone:  Bone.011, index:  11
+		processing begun of bone:  Bone.012, index:  12
+		processing begun of bone:  Bone.013, index:  13
+		processing begun of bone:  Bone.014, index:  14
+		processing begun of bone:  Bone.015, index:  15
+		processing begun of bone:  Bone.016, index:  16
+		processing begun of bone:  Bone.017, index:  17
+		processing begun of bone:  Bone.018, index:  18
+		processing begun of bone:  Bone.019, index:  19
+		processing begun of bone:  Bone.020, index:  20
+		processing begun of bone:  Bone.021, index:  21
+		processing begun of bone:  Bone.022, index:  22
+		processing begun of bone:  Bone.023, index:  23
+		processing begun of bone:  Bone.024, index:  24
+		processing begun of bone:  Bone.025, index:  25
+		processing begun of bone:  Bone.026, index:  26
+		processing begun of bone:  Bone.027, index:  27
+		processing begun of bone:  Bone.028, index:  28
+		processing begun of bone:  Bone.029, index:  29
+		processing begun of bone:  Bone.030, index:  30
+		processing begun of bone:  Bone.031, index:  31
+		processing begun of bone:  Bone.040, index:  32
+		processing begun of bone:  Bone.032, index:  33
+		processing begun of bone:  Bone.033, index:  34
+		processing begun of bone:  Bone.034, index:  35
+		processing begun of bone:  Bone.035, index:  36
+		processing begun of bone:  Bone.036, index:  37
+		processing begun of bone:  Bone.037, index:  38
+		processing begun of bone:  Bone.038, index:  39
+		processing begun of bone:  Bone.039, index:  40
+		processing action ArmatureAction:  in[1 - 60], out[0 - 60]
+	processing begun of mesh:  Snake
+		WARNING: No materials have been assigned: 
+		num positions      :  10892
+		num normals        :  10892
+		num uvs            :  21784
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  56088
+		Skeleton stats:  
+			Total Influencers:  23132
+			Avg # of influencers per vertex:  2.1238
+			Highest # of influencers observed:  7, num vertices with this:  17
+			exported as 7 influencers
+			num skeletonWeights and skeletonIndices:  87136
+	processing begun of camera (FreeCamera):  Camera
+	processing begun of light (SUN):  Sun
+========= Writing of scene file started =========
+========= Writing of scene file completed =========
+========= end of processing =========
+elapsed time:  0 min, 20.2994 secs
