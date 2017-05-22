@@ -21,20 +21,32 @@
 		 	 var music = new BABYLON.Sound("music", "insaniquarium.mp3", scene, null, { loop: false, autoplay: true });
 
 			var camera = new BABYLON.ArcRotateCamera("camera",0,0,0,BABYLON.Vector3.Zero(0,1,0), scene);
-			camera.setPosition(new BABYLON.Vector3(0,40,-10));
+			camera.setPosition(new BABYLON.Vector3(0,10,30));
 			camera.attachControl(canvas,true);
+			scene.activeCamera.alpha += 3.13;
 
 
-			// camera.checkCollisions = true;
+
+			 camera.checkCollisions = true;
 			// scene.activeCamera = camera;
-			// // camera.setTarget(BABYLON.Vector3.Zero());
-			// camera.checkCollisions = true;
-			// camera.ellipsoid = new BABYLON.Vector3(0.8, 0.8, 1.0);
+			// camera.setTarget(BABYLON.Vector3.Zero());
+			//  camera.ellipsoid = new BABYLON.Vector3(0.8, 0.8, 1.0);
+
 			// camera.onCollide = function(collideMesh){
 			// 	if (collideMesh.uniqueId == wall1.uniqueId){
-			// 		camera.position = new BABYLON.Vector3(13,37,42);
+			// 		//camera.position = new BABYLON.Vector3(13,37,42);
+			// 	}
+			// 	if (collideMesh.uniqueId == wall2.uniqueId){
+			// 		//camera.position = new BABYLON.Vector3(13,37,42);
+			// 	}
+			// 	if (collideMesh.uniqueId == wall3.uniqueId){
+			// 		//camera.position = new BABYLON.Vector3(13,37,42);
+			// 	}
+			// 	if (collideMesh.uniqueId == southwall.uniqueId){
+			// 		//camera.position = new BABYLON.Vector3(13,37,42);
 			// 	}
 			// }
+
 
 			// Maze 
 			// South Wall
@@ -43,6 +55,7 @@
 				southwall.scaling.x = 67;
 				southwall.scaling.y = 4;
 				southwall.physicsImpostor = new BABYLON.PhysicsImpostor(southwall, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: -10, friction: 10000}, scene);
+				southwall.checkCollisions = true;
 
 			// North Wall
 			var northwall = new BABYLON.Mesh.CreateBox("northwall",3,scene); northwall.position.z = 99; 
@@ -50,6 +63,7 @@
 				northwall.scaling.x = 67;
 				northwall.scaling.y = 4;
 				northwall.physicsImpostor = new BABYLON.PhysicsImpostor(northwall, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+				northwall.checkCollisions = true;
 
 			// East Wall
 			var eastwall = new BABYLON.Mesh.CreateBox("eastwall",3,scene); eastwall.position.x = 99; 
@@ -57,6 +71,7 @@
 				eastwall.scaling.z = 65;
 				eastwall.scaling.y = 4;
 				eastwall.physicsImpostor = new BABYLON.PhysicsImpostor(eastwall, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+				eastwall.checkCollisions = true;
 
 			// West Wall
 			var westwall = new BABYLON.Mesh.CreateBox("westwall",3,scene); westwall.position.x = -99; 
@@ -64,6 +79,7 @@
 				westwall.scaling.z = 65;
 				westwall.scaling.y = 4;
 				westwall.physicsImpostor = new BABYLON.PhysicsImpostor(westwall, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+				westwall.checkCollisions = true;
 
 			// Wall North To Soutch #1
 			var wall1 = new BABYLON.Mesh.CreateBox("wall1",3,scene);			
@@ -87,6 +103,7 @@
 			//childnorthtosouth1.position.x = -80;
 			//childnorthtosouth1.scaling.z = 25; 
 			//childnorthtosouth1.position.z = -60;
+			wall2.checkCollisions = true;
 
 			var wall3 = new BABYLON.Mesh.CreateBox("wall3",3,scene);
 			wall3.position.x = -80;
@@ -95,6 +112,7 @@
 			wall3.position.y = 5;
 			wall3.scaling.y = 4;
 			wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall3.checkCollisions = true;
 
 			var wall4 = new BABYLON.Mesh.CreateBox("wall4",3,scene);
 			wall4.position.x = -60;
@@ -103,6 +121,7 @@
 			wall4.position.y = 5;
 			wall4.scaling.y = 4;
 			wall4.physicsImpostor = new BABYLON.PhysicsImpostor(wall4, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall4.checkCollisions = true;
 
 			var wall5 = new BABYLON.Mesh.CreateBox("wall5",3,scene);
 			wall5.position.x = -55.5;
@@ -112,6 +131,7 @@
 			wall5.position.y = 5;
 			wall5.scaling.y = 4;
 			wall5.physicsImpostor = new BABYLON.PhysicsImpostor(wall5, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall5.checkCollisions = true;
 
 			var wall6 = new BABYLON.Mesh.CreateBox("wall6",3,scene);
 			wall6.position.x = -60;
@@ -120,6 +140,7 @@
 			wall6.position.y = 5;
 			wall6.scaling.y = 4;
 			wall6.physicsImpostor = new BABYLON.PhysicsImpostor(wall6, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall6.checkCollisions = true;
 
 			var wall7 = new BABYLON.Mesh.CreateBox("wall7",3,scene);
 			wall7.position.x = -60;
@@ -128,6 +149,7 @@
 			wall7.position.y = 5;
 			wall7.scaling.y = 4;
 			wall7.physicsImpostor = new BABYLON.PhysicsImpostor(wall7, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall7.checkCollisions = true;
 
 			var wall8 = new BABYLON.Mesh.CreateBox("wall7",3,scene);
 			wall8.position.x = -30;
@@ -136,6 +158,7 @@
 			wall8.position.y = 5;
 			wall8.scaling.y = 4;
 			wall8.physicsImpostor = new BABYLON.PhysicsImpostor(wall8, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall8.checkCollisions = true;
 
 			var wall9 = new BABYLON.Mesh.CreateBox("wall9",3,scene);
 			wall9.position.x = -45;
@@ -145,6 +168,7 @@
 			wall9.position.y = 5;
 			wall9.scaling.y = 4;
 			wall9.physicsImpostor = new BABYLON.PhysicsImpostor(wall9, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall9.checkCollisions = true;
 
 			var wall10 = new BABYLON.Mesh.CreateBox("wall10",3,scene);
 			wall10.position.x = -30;
@@ -153,6 +177,7 @@
 			wall10.position.y = 5;
 			wall10.scaling.y = 4;
 			wall10.physicsImpostor = new BABYLON.PhysicsImpostor(wall10, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall10.checkCollisions = true;
 
 			var wall11 = new BABYLON.Mesh.CreateBox("wall11",3,scene);
 			wall11.position.x = -30;
@@ -161,6 +186,7 @@
 			wall11.position.y = 5;
 			wall11.scaling.y = 4;
 			wall11.physicsImpostor = new BABYLON.PhysicsImpostor(wall11, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall11.checkCollisions = true;
 
 			var wall12 = new BABYLON.Mesh.CreateBox("wall12",3,scene);
 			wall12.position.x = -45;
@@ -170,6 +196,7 @@
 			wall12.position.y = 5;
 			wall12.scaling.y = 4;
 			wall12.physicsImpostor = new BABYLON.PhysicsImpostor(wall12, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall12.checkCollisions = true;
 
 			var wall13 = new BABYLON.Mesh.CreateBox("wall13",3,scene);
 			wall13.position.x = -10;
@@ -178,6 +205,7 @@
 			wall13.position.y = 5;
 			wall13.scaling.y = 4;
 			wall13.physicsImpostor = new BABYLON.PhysicsImpostor(wall13, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall13.checkCollisions = true;
 
 			var wall14 = new BABYLON.Mesh.CreateBox("wall14",3,scene);
 			wall14.position.x = -10;
@@ -187,6 +215,7 @@
 			wall14.position.y = 5;
 			wall14.scaling.y = 4;
 			wall14.physicsImpostor = new BABYLON.PhysicsImpostor(wall14, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall14.checkCollisions = true;
 
 			var wall15 = new BABYLON.Mesh.CreateBox("wall15",3,scene);
 			wall15.position.x = -19;
@@ -196,6 +225,7 @@
 			wall15.scaling.y = 4;
 			wall15.rotation.y = 4.7;
 			wall15.physicsImpostor = new BABYLON.PhysicsImpostor(wall15, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall15.checkCollisions = true;
 
 			var wall16 = new BABYLON.Mesh.CreateBox("wall16",3,scene);
 			wall16.position.x = -10;
@@ -204,6 +234,7 @@
 			wall16.position.y = 5;
 			wall16.scaling.y = 4
 			wall16.physicsImpostor = new BABYLON.PhysicsImpostor(wall16, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall16.checkCollisions = true;
 
 
 			var wall17 = new BABYLON.Mesh.CreateBox("wall17",3,scene);
@@ -214,6 +245,7 @@
 			wall17.scaling.y = 4;
 			wall17.rotation.y = 4.7;
 			wall17.physicsImpostor = new BABYLON.PhysicsImpostor(wall17, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall17.checkCollisions = true;
 
 			var wall18 = new BABYLON.Mesh.CreateBox("wall18",3,scene);
 			wall18.position.x = -10;
@@ -222,6 +254,7 @@
 			wall18.position.y = 5;
 			wall18.scaling.y = 4;
 			wall18.physicsImpostor = new BABYLON.PhysicsImpostor(wall18, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall18.checkCollisions = true;
 
 			var wall19 = new BABYLON.Mesh.CreateBox("wall19",3,scene);
 			wall19.position.x = 10;
@@ -230,6 +263,7 @@
 			wall19.position.y = 5;
 			wall19.scaling.y = 4;
 			wall19.physicsImpostor = new BABYLON.PhysicsImpostor(wall19, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall19.checkCollisions = true;
 
 			var wall20 = new BABYLON.Mesh.CreateBox("wall20",3,scene);
 			wall20.position.x = 10;
@@ -238,6 +272,7 @@
 			wall20.position.y = 5;
 			wall20.scaling.y = 4;
 			wall20.physicsImpostor = new BABYLON.PhysicsImpostor(wall20, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall20.checkCollisions = true;
 
 			var wall21 = new BABYLON.Mesh.CreateBox("wall21",3,scene);
 			wall21.position.x = -10;
@@ -247,6 +282,7 @@
 			wall21.position.y = 5;
 			wall21.scaling.y = 4;
 			wall21.physicsImpostor = new BABYLON.PhysicsImpostor(wall21, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall21.checkCollisions = true;
 
 			var wall22 = new BABYLON.Mesh.CreateBox("wall22",3,scene);
 			wall22.position.x = 70;
@@ -255,6 +291,7 @@
 			wall22.position.y = 5;
 			wall22.scaling.y = 4;
 			wall22.physicsImpostor = new BABYLON.PhysicsImpostor(wall22, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall22.checkCollisions = true;
 
 			var wall23 = new BABYLON.Mesh.CreateBox("wall23",3,scene);
 			wall23.position.x = 25;
@@ -264,6 +301,7 @@
 			wall23.position.y = 5;
 			wall23.scaling.y = 4;
 			wall23.physicsImpostor = new BABYLON.PhysicsImpostor(wall23, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall23.checkCollisions = true;
 
 			var wall24 = new BABYLON.Mesh.CreateBox("wall24",3,scene);
 			wall24.position.x = 40;
@@ -273,6 +311,7 @@
 			wall24.position.y = 5;
 			wall24.scaling.y = 4;
 			wall24.physicsImpostor = new BABYLON.PhysicsImpostor(wall24, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall24.checkCollisions = true;
 
 			var wall25 = new BABYLON.Mesh.CreateBox("wall25",3,scene);
 			wall25.position.x = 40;
@@ -282,6 +321,7 @@
 			wall25.position.y = 5;
 			wall25.scaling.y = 4;
 			wall25.physicsImpostor = new BABYLON.PhysicsImpostor(wall25, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall25.checkCollisions = true;
 
 			var wall26 = new BABYLON.Mesh.CreateBox("wall26",3,scene);
 			wall26.position.x = 40;
@@ -290,6 +330,7 @@
 			wall26.position.y = 5;
 			wall26.scaling.y = 4;
 			wall26.physicsImpostor = new BABYLON.PhysicsImpostor(wall26, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall26.checkCollisions = true;
 
 
 			var wall27 = new BABYLON.Mesh.CreateBox("wall27",3,scene);
@@ -300,6 +341,7 @@
 			wall27.position.y = 5;
 			wall27.scaling.y = 4;
 			wall27.physicsImpostor = new BABYLON.PhysicsImpostor(wall27, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall27.checkCollisions = true;
 
 
 			var wall28 = new BABYLON.Mesh.CreateBox("wall28",3,scene);
@@ -309,6 +351,7 @@
 			wall28.position.y = 5;
 			wall28.scaling.y = 4;
 			wall28.physicsImpostor = new BABYLON.PhysicsImpostor(wall28, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall28.checkCollisions = true;
 
 			var wall29 = new BABYLON.Mesh.CreateBox("wall29",3,scene);
 			wall29.position.x = 58;
@@ -318,6 +361,7 @@
 			wall29.position.y = 5;
 			wall29.scaling.y = 4;
 			wall29.physicsImpostor = new BABYLON.PhysicsImpostor(wall29, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0, friction: 10000}, scene);
+			wall29.checkCollisions = true;
 
 	
 			var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0,1,0), scene);
@@ -334,9 +378,12 @@
 
 			// Creation of Sonic
 			var snake ;
-			BABYLON.SceneLoader.ImportMesh("","Finalproject/", "test.babylon", scene, function (newMeshes, particleSystems, skeletons) {
+			var snakeSkeleton;
+			BABYLON.SceneLoader.ImportMesh("","Finalproject/", "char.babylon", scene, function (newMeshes, particleSystems, skeletons) {
 
           	snake = newMeshes[0];
+          	snakeSkeleton = skeletons[0];
+          	scene.beginAnimation(snakeSkeleton, 0, 0, false, 1.0);
           	snake.physicsImpostor = new BABYLON.PhysicsImpostor(snake, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 0, friction: 1000000}, scene);
           	camera.target = snake;
 
@@ -366,6 +413,7 @@
             var moving=false;
 
             	// Movement
+
 				window.onkeydown = function(event) {
             	event = event || window.event;
 				var keyCode = event.which || event.keyCode;
@@ -378,7 +426,8 @@
 						// snake.rotation.y = (Math.PI - 4.71238898038469 + arc.alpha) * -1;
 						// snake.position = new BABYLON.Vector3(snake.position.x+=snakex,0,snake.position.z+=snakez);
 						// arc.target = new BABYLON.Vector3(arc.target.x+=snakex,0,arc.target.z+=snakez);
-						camera.rotation.z = Math.PI;
+						camera.rotation.z = -Math.PI;
+						startAnimation();
 						break;
 
 					// A Key
@@ -392,7 +441,7 @@
 					case 83:					
 						down = true;						
 						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
-						camera.rotation.z = -Math.PI;
+						camera.rotation.z = Math.PI;
 						break;
 
 					// D key
@@ -402,10 +451,9 @@
 						camera.rotation.z = Math.PI/2;
 						break;
 					}
-			};
+			};   			
 
-
-			window.onkeyup = function(event) {
+				window.onkeyup = function(event) {
             	event = event || window.event;
 				var keyCode = event.which || event.keyCode;
 
@@ -414,21 +462,27 @@
 					case 87:					
 						up = false;		
 						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
-						camera.rotation.z = Math.PI;
+						camera.rotation.z = -Math.PI;
+						//scene.stopAnimation(snakeSkeleton);
+						//scene.beginAnimation(snakeSkeleton, scene.currentFrame, 0, false, 1.0);
 						break;
 
 					// A Key
 					case 65:						
 						left = false;						
 						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
-						camera.rotation.z = Math.PI/2;	
+						camera.rotation.z = Math.PI/2;
+						//scene.stopAnimation(snakeSkeleton);
+						//scene.beginAnimation(snakeSkeleton, scene.currentFrame, 0, false, 1.0);
 						break;
 
 					// S key
 					case 83:				
 						down = false;						
 						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);	
-						camera.rotation.z = -Math.PI;		
+						camera.rotation.z = Math.PI;
+						//scene.stopAnimation(snakeSkeleton);
+						//scene.beginAnimation(snakeSkeleton, scene.currentFrame, 0, false, 1.0);		
 						break;
 
 					// D key
@@ -436,6 +490,8 @@
 						right = false;											
 						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
 						camera.rotation.z = Math.PI/2;
+						//scene.stopAnimation(snakeSkeleton);
+						//scene.beginAnimation(snakeSkeleton, scene.currentFrame, 0, false, 1.0);
 						break;	
 				}
 			};
@@ -447,18 +503,14 @@
 		
 		// var scene = createScene();
 		engine.runRenderLoop(function() {
-			if (camera.radius > 40)    
-			{
-				camera.radius = 40;
+			if (camera.radius > 20){
+			 	camera.radius = 20;
 			}
-			if(camera.radius < 40) 
-			{
-				camera.radius = 40;
+			if(camera.radius < 20){
+				camera.radius = 20;
 			}
-
-			if(moving)
-			{
-				if (snake.intersectsMesh(apple2, false)) {
+			if(moving){
+				if (snake.intersectsMesh(apple2, false)){
 					var clap = new BABYLON.Sound("clap", "clap.mp3", scene, null, { loop: false, autoplay: true });
   					apple2.dispose();
   					canvas2 = new BABYLON.ScreenSpaceCanvas2D(scene, {
@@ -478,7 +530,6 @@
 	    			})
   								  							
 				}
-
 				if (apple2.intersectsMesh(southwall, false)) {
   					var x = Math.floor(Math.random() * 150)-99;		
 					var z = Math.floor(Math.random() * 150)-99;
@@ -678,32 +729,29 @@
   					apple2.position.z = z;
   				}
 
-			}
 
-			if(up)
-			{
-				snake.position.z += 0.5;
-				moving = true;
 			}
-			if(down)
+			if(up)
 			{
 				snake.position.z -= 0.5;
 				moving = true;
 			}
-			if(left)
+			if(down)
 			{
-				snake.position.x -= 0.5;
+				snake.position.z += 0.5;
 				moving = true;
 			}
-			if(right)
+			if(left)
 			{
 				snake.position.x += 0.5;
 				moving = true;
 			}
+			if(right)
+			{
+				snake.position.x -= 0.5;
+				moving = true;
+			}
 
-
-
-			// apple2.rotation.y +=0.1;
 			scene.render();
 
 		});
