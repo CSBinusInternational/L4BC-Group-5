@@ -509,6 +509,12 @@
 			if(camera.radius < 20){
 				camera.radius = 20;
 			}
+			if(camera.beta > 43){
+				camera.beta = 43;
+			}
+			if(camera.beta < 43){
+				camera.beta = 43;
+			}
 			if(moving){
 				if (snake.intersectsMesh(apple2, false)){
 					var clap = new BABYLON.Sound("clap", "clap.mp3", scene, null, { loop: false, autoplay: true });
