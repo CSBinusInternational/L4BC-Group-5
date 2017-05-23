@@ -412,89 +412,73 @@
             var up=false, down=false, left=false, right=false;
             var moving=false;
 
+            var animationState = false;
+    		function startAnimation() {
+        		if(!animationState){
+            		animationState = true;
+            		scene.beginAnimation(snakeSkeleton, 1, 30, true, 1.0);
+        		}
+    		};
+
+    		var keyCode = {}
+
             	// Movement
 
-				window.onkeydown = function(event) {
-            	event = event || window.event;
-				var keyCode = event.which || event.keyCode;
+				window.onkeydown = function(e){
+        		e = e || window.e;
+        		keyCode[e.keyCode || e.which ] = true;
+        		
 
-				switch(keyCode) {
-					// W key
-					case 87:
-						up = true;		
-						// //scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);	
-						// snake.rotation.y = (Math.PI - 4.71238898038469 + arc.alpha) * -1;
-						// snake.position = new BABYLON.Vector3(snake.position.x+=snakex,0,snake.position.z+=snakez);
-						// arc.target = new BABYLON.Vector3(arc.target.x+=snakex,0,arc.target.z+=snakez);
-						camera.rotation.z = -Math.PI;
-						startAnimation();
-						break;
+        		if(keyCode[65]){
+            		//console.log("left");
+           			left = true;
+           			camera.rotation.z = Math.PI/2;
+           			snake.position.x += 0.5;
+           			snake.rotation.y = 1;
+					moving = true;
+            		// model.position = new BABYLON.Vector3(model.position.x+=modelx,0,model.position.z+=modelz);
+            		startAnimation();
+        		}
+        		if(keyCode[87]){
+            		//console.log("up");
+            		up = true;
+            		camera.rotation.z = -Math.PI;
+            		snake.position.z -= 0.5;
+					moving = true;
+            		// model.position = new BABYLON.Vector3(model.position.x+=modelx,0,model.position.z+=modelz);
+            		startAnimation();
+        		}
+        		if(keyCode[83]){
+            		//console.log("down");
+            		down = true;											
+					//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
+					camera.rotation.z = Math.PI/2;
+						snake.position.z += 0.5;
+						moving = true;
+            		// model.position = new BABYLON.Vector3(model.position.x+=modelx,0,model.position.z+=modelz);
+            		startAnimation();
+        		}
+        		if(keyCode[68]){
+            		//console.log("right");
+            		right = true;											
+					//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
+					camera.rotation.z = Math.PI/2;
+					snake.position.x -= 0.5;
+					moving = true;
+            		// model.position = new BABYLON.Vector3(model.position.x+=modelx,0,model.position.z+=modelz);
+            		startAnimation();
+        		}
 
-					// A Key
-					case 65:
-						left = true;						
-						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);	
-						camera.rotation.z = Math.PI/2;	
-						break;
+        	}
 
-					// S key
-					case 83:					
-						down = true;						
-						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
-						camera.rotation.z = Math.PI;
-						break;
-
-					// D key
-					case 68:
-						right = true;											
-						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
-						camera.rotation.z = Math.PI/2;
-						break;
-					}
-			};   			
-
-				window.onkeyup = function(event) {
-            	event = event || window.event;
-				var keyCode = event.which || event.keyCode;
-
-				switch(keyCode) {
-					// W key
-					case 87:					
-						up = false;		
-						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
-						camera.rotation.z = -Math.PI;
-						//scene.stopAnimation(snakeSkeleton);
-						//scene.beginAnimation(snakeSkeleton, scene.currentFrame, 0, false, 1.0);
-						break;
-
-					// A Key
-					case 65:						
-						left = false;						
-						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
-						camera.rotation.z = Math.PI/2;
-						//scene.stopAnimation(snakeSkeleton);
-						//scene.beginAnimation(snakeSkeleton, scene.currentFrame, 0, false, 1.0);
-						break;
-
-					// S key
-					case 83:				
-						down = false;						
-						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);	
-						camera.rotation.z = Math.PI;
-						//scene.stopAnimation(snakeSkeleton);
-						//scene.beginAnimation(snakeSkeleton, scene.currentFrame, 0, false, 1.0);		
-						break;
-
-					// D key
-					case 68:				
-						right = false;											
-						//scene.beginAnimation(skeletons[0], 0, 60, true, 1.0);
-						camera.rotation.z = Math.PI/2;
-						//scene.stopAnimation(snakeSkeleton);
-						//scene.beginAnimation(snakeSkeleton, scene.currentFrame, 0, false, 1.0);
-						break;	
-				}
-			};
+				window.onkeyup = function(e){
+        			delete keyCode[e.keyCode];
+        			if(!keyCode[65]&&!keyCode[87]&&!keyCode[83]&&!keyCode[68]) {
+            			scene.stopAnimation(snakeSkeleton);
+            			scene.beginAnimation(snakeSkeleton, scene.currentFrame, 0, false, 1.0);
+            			animationState = false;
+        				}
+    				}
 				
 				
 			
@@ -737,27 +721,6 @@
 
 
 			}
-			if(up)
-			{
-				snake.position.z -= 0.5;
-				moving = true;
-			}
-			if(down)
-			{
-				snake.position.z += 0.5;
-				moving = true;
-			}
-			if(left)
-			{
-				snake.position.x += 0.5;
-				moving = true;
-			}
-			if(right)
-			{
-				snake.position.x -= 0.5;
-				moving = true;
-			}
-
 			scene.render();
 
 		});
