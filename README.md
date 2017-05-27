@@ -114,7 +114,7 @@ And the last one is I made the walls for the maze. And make the pattern of the m
 
 <br> 
 
-<h3>List Of library being used</h3>
+<h1>List Of library being used</h1>
   <ul>
     <li>babylon.js</li>   
     <li>babylonObjLoader</li>   
@@ -178,9 +178,9 @@ For our gameplay of the maze game, the player must search an apple to win the ga
 		- Etc.
 	
 <h1>Full Coding</h1>
-	- Group 5 Repository 
-		https://github.com/CSBinusInternational/L4BC-Group-5
-	- finalproject.html
+	- Group 5 Repository<br>
+		https://github.com/CSBinusInternational/L4BC-Group-5<br>
+	- finalproject.html<br>
 		<!DOCTYPE html>
 <html>
 <head>
