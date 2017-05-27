@@ -1112,7 +1112,9 @@ For our gameplay of the maze game, the player must search an apple to win the ga
 
 <h1>Screenshot of the Game</h1>
 1. Character (Leon.S.Kennedy)<br>
+
 ![](Img/Img1.jpg)<br>
+
 2. Maze Overview<br>
 ![](Img/Img2.jpg)<br>
 3. Apple Object<br>
