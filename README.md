@@ -140,13 +140,24 @@ For our gameplay of the maze game, the player must search an apple to win the ga
 
 <h1>Assets Needed</h1>
 
-- 2D
-	- Textures
-		- Environment Textures
-	- Heightmap data (If applicable)
-		- List required data required - Example: DEM data of the entire UK.
+<h3>2D</h3>
+	<ul>
+		<li>Textures</li>
+		<ul><li>Groundtex.jpg to make the ground looks like grass (ground texture)</li></ul>
+		
+		<li>Block.jpg to make the walls looks like real walls with bricks (wall texture)Skybox</li>
+		<li>Skybox</li>
+		<ul>
+		<li>Skybox_nx.jpg</li>
+		<li>Skybox_ny.jpg</li>
+		<li>Skybox_nz.jpg</li>
+		<li>Skybox_px.jpg</li>
+		<li>Skybox_py.jpg</li>
+		<li>Skybox_pz.jpg</li>
+		</ul>
 	- Etc.
-- 3D
+	</ul>
+<h3>3D</h3>
 	- Characters List
 		- Character #1
 		- Character #2
@@ -157,7 +168,7 @@ For our gameplay of the maze game, the player must search an apple to win the ga
 		- Example #2 
 		- Example #3
 		- etc.
-- Animation
+<h3>Animation</h3>
 	- Environment Animations 
 		- Example
 		- etc.
@@ -171,12 +182,11 @@ For our gameplay of the maze game, the player must search an apple to win the ga
 
 
 <h1>Schedule</h1>
-- <Object #1>
-	- Time Scale
-		- Milestone 1
-		- Milestone 2
-		- Etc.
-	
+	We started discussing the topic of the game around week 4. We actually have changed the game once, we previously wanted to make a snake game, where the player assumes control over the snake to collect as many points as possible in the game without dying (Hit by rock, or eating inedible fruit), Unfortunately, we lack knowledge in performing backtrack for snake movement and displaying appropriate canvas for the point thus resulting in the game unfinished 
+	Upon entering week 8 after midterm, we decided to change the snake into character for more elaborate movement, we started to code thereafter, However we see that the game may be too simple and easy to play. Based on that idea we have decided to implement one last feature in our game which is the maze. Around week 9 to week 10 we started dividing the work equally with Giorgio doing backend, and Ramada doing frontend. This process takes about 1-2 weeks, by the beginning of week 12 we have combined our code and push it to github. And the remaining one week we decided to patch our code by improving its features such as (ex : textures).
+ 
+ 
+
 <h1>Full Coding</h1>
 	<br>- Group 5 Repository</br>
 		<br>https://github.com/CSBinusInternational/L4BC-Group-5</br>
