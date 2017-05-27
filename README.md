@@ -143,44 +143,47 @@ For our gameplay of the maze game, the player must search an apple to win the ga
 <h3>2D</h3>
 	<ul>
 		<li>Textures</li>
-		<ul><li>Groundtex.jpg to make the ground looks like grass (ground texture)</li></ul>
-		
-		<li>Block.jpg to make the walls looks like real walls with bricks (wall texture)Skybox</li>
+		&emsp;Groundtex.jpg to make the ground looks like grass (ground texture)
+		<br>
+		<li>Block.jpg to make the walls looks like real walls with bricks (wall texture)</li>
 		<li>Skybox</li>
-		<ul>
-		<li>Skybox_nx.jpg</li>
-		<li>Skybox_ny.jpg</li>
-		<li>Skybox_nz.jpg</li>
-		<li>Skybox_px.jpg</li>
-		<li>Skybox_py.jpg</li>
-		<li>Skybox_pz.jpg</li>
-		</ul>
-	- Etc.
+		&emsp;Skybox_nx.jpg<br>
+		&emsp;Skybox_ny.jpg<br>
+		&emsp;Skybox_nz.jpg<br>
+		&emsp;Skybox_px.jpg<br>
+		&emsp;Skybox_py.jpg<br>
+		&emsp;Skybox_pz.jpg<br>
+		<br>
+		<li>Sound</li>
+		&emsp;Insaniquarium.mp3 for background music<br>
+		&emsp;Clap.mp3 for congratulation when player won the game
+		<br>	
 	</ul>
+	
 <h3>3D</h3>
-	- Characters List
-		- Character #1
-		- Character #2
-		- Character #3
-		- etc.
-	- Environmental Art Lists
-		- Example #1
-		- Example #2 
-		- Example #3
-		- etc.
+<ul>
+	<li>Characters List</li>
+		&emsp;Char.babylon for the character Leon.S.Kennedy
+		<br>
+	<li>Environmental Art Lists</li>
+		&emsp;Wall mesh for the wall in the maze<br>
+		&emsp;Apple.obj for object apple
+		<br>
+</ul>
+
 <h3>Animation</h3>
-	- Environment Animations 
-		- Example
-		- etc.
-	- Character Animations 
-		- Player
-- Example 
-- etc.
-		- NPC
-			- Example
-			- etc.
+<ul>
+	<li>Environment Animations </li>
+		&emsp;None
+		<br>
+	<li>Character Animations</li>
+		&emsp;Player<br>
+		&emsp;Walking Animation
+		<br>
+	<li>NPC</li>
+		&emsp;None<br>
 
-
+</ul>
 <h1>Schedule</h1>
 	We started discussing the topic of the game around week 4. We actually have changed the game once, we previously wanted to make a snake game, where the player assumes control over the snake to collect as many points as possible in the game without dying (Hit by rock, or eating inedible fruit), Unfortunately, we lack knowledge in performing backtrack for snake movement and displaying appropriate canvas for the point thus resulting in the game unfinished 
 	Upon entering week 8 after midterm, we decided to change the snake into character for more elaborate movement, we started to code thereafter, However we see that the game may be too simple and easy to play. Based on that idea we have decided to implement one last feature in our game which is the maze. Around week 9 to week 10 we started dividing the work equally with Giorgio doing backend, and Ramada doing frontend. This process takes about 1-2 weeks, by the beginning of week 12 we have combined our code and push it to github. And the remaining one week we decided to patch our code by improving its features such as (ex : textures).
@@ -1107,7 +1110,6 @@ For our gameplay of the maze game, the player must search an apple to win the ga
 
 ```
 
-<h1>Screenshot of the Game</h1>
-<li>1.	Character ( Leon.S.Kennedy )</li>
-![](Img/Img1.png)
+Screenshot of the Game
+<put images of your game>
 
