@@ -1076,6 +1076,8 @@ For our gameplay of the maze game, the player must search an apple to win the ga
 
 ```
 
+```
+
 	-style.css
 	html, body{
 	width: 100%;
@@ -1092,6 +1094,8 @@ For our gameplay of the maze game, the player must search an apple to win the ga
 	padding: 0;
 	touch-action: none;
 }
+
+```
 
 Screenshot of the Game
 <put images of your game>
