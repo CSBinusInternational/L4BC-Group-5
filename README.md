@@ -179,8 +179,8 @@ Schedule
 	
 Full Coding
 	- <Put your group CS Github url/link>
-		- <Copy all your code>
-			- <Please give comments on your code)
+		https://github.com/CSBinusInternational/L4BC-Group-5
+	- <Copy all your code>
 
 Screenshot of the Game
 <put images of your game>
