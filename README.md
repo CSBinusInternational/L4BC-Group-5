@@ -181,7 +181,9 @@ For our gameplay of the maze game, the player must search an apple to win the ga
 	<br>- Group 5 Repository</br>
 		<br>https://github.com/CSBinusInternational/L4BC-Group-5</br>
 	<br>- finalproject.html</br>
-...	
+	
+```
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -1071,7 +1073,9 @@ For our gameplay of the maze game, the player must search an apple to win the ga
 
 </body>
 </html>
-...
+
+```
+
 	-style.css
 	html, body{
 	width: 100%;
