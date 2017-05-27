@@ -1107,6 +1107,7 @@ For our gameplay of the maze game, the player must search an apple to win the ga
 
 ```
 
-Screenshot of the Game
-<put images of your game>
+<h1>Screenshot of the Game</h1>
+<li>1.	Character ( Leon.S.Kennedy )</li>
+![](Img/Img1.png)
 
