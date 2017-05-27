@@ -138,7 +138,7 @@ For our gameplay of the maze game, the player must search an apple to win the ga
 
 
 
-Assets Needed
+<h1>Assets Needed</h1>
 
 - 2D
 	- Textures
