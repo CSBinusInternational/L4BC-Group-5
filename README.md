@@ -178,9 +178,9 @@ For our gameplay of the maze game, the player must search an apple to win the ga
 		- Etc.
 	
 <h1>Full Coding</h1>
-	- Group 5 Repository<br>
-		https://github.com/CSBinusInternational/L4BC-Group-5<br>
-	- finalproject.html<br>
+	<br>- Group 5 Repository</br>
+		<br>https://github.com/CSBinusInternational/L4BC-Group-5</br>
+	<br>- finalproject.html</br>
 		<!DOCTYPE html>
 <html>
 <head>
