@@ -1111,18 +1111,18 @@ For our gameplay of the maze game, the player must search an apple to win the ga
 ```
 
 <h1>Screenshot of the Game</h1>
-1. Character (Leon.S.Kennedy)
-![](Img/Img1.jpg)
-2. Maze Overview
-![](Img/Img2.jpg)
-3. Apple Object
-![](Img/Img3.jpg)
-4. Ground Texture (grass)
-![](Img/Img4.jpg)
-5. Wall Texture (Brick)
-![](Img/Img5.jpg)
-6. Skybox Texture
-![](Img/Img6.jpg)
-7. Medallion display when winning the game (Canvas)
-![](Img/Img7.jpg)
+1. Character (Leon.S.Kennedy)<br>
+![](Img/Img1.jpg)<br>
+2. Maze Overview<br>
+![](Img/Img2.jpg)<br>
+3. Apple Object<br>
+![](Img/Img3.jpg)<br>
+4. Ground Texture (grass)<br>
+![](Img/Img4.jpg)<br>
+5. Wall Texture (Brick)<br>
+![](Img/Img5.jpg)<br>
+6. Skybox Texture<br>
+![](Img/Img6.jpg)<br>
+7. Medallion display when winning the game (Canvas)<br>
+![](Img/Img7.jpg)<br>
 
