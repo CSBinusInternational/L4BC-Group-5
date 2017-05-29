@@ -28,6 +28,8 @@
 Overview………………………………………………………………………………………………...3<br>
 &emsp;Theme / Setting / Genre<br>
 &emsp;Project Description<br>
+&emsp;Limitations<br>
+&emsp;How to install the game<br>
  
 Core Gameplay Mechanics Brief…………………………………………………………….4<br>
 &emsp;Targeted platforms<br>
