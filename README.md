@@ -65,6 +65,10 @@ Screenshots of game……………………………………………………�
   The game will consist of a maze from walls, a character that the player will control, a ground, sky, apple for the character to collect so the character could win the game and solve the mystery of the whole maze.
   In this game the character will play as Third person shooter (TRD). where the camera will follow the character movements from behind. The character itself we used Leon from Resident Evil 4 game. We chose Leon because the character Leon fits the situation of the game.
 
+<h1>Limitations</h1>
+<ol>
+	<li>If the character acceleration with the wall is too big, impulse shall apply, and character will fall. Should such case happens, there is no way for character to get up but to refresh the game </li>
+</ol>
 
 <h1>Core Gameplay Mechanics Brief</h1>
   <h3>Keyboard</h3>
