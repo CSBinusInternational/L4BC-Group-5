@@ -67,7 +67,7 @@ Screenshots of game……………………………………………………�
 
 <h1>Limitations</h1>
 <ol>
-	<li>If the character acceleration with the wall is too big, impulse shall apply, and character will fall. Should such case happens, there is no way for character to get up but to refresh the game </li>
+	<li>If the character acceleration with the wall is too big, impulse shall apply, and character will fall. Should such case happens, currently there is no way for character to get up but to refresh the game </li>
 </ol>
 
 <h1>Core Gameplay Mechanics Brief</h1>
