@@ -70,6 +70,14 @@ Screenshots of game……………………………………………………�
 	<li>If the character acceleration with the wall is too big, impulse shall apply, and character will fall. Should such case happens, currently there is no way for character to get up but to refresh the game </li>
 </ol>
 
+<h1>How to install the game</h1>
+<ol>
+	<li>Git pull / clone this repository</li>
+	<li>Search for the finalproject.html file</li>
+	<li>Open it in Mozilla Firefox in order to play (Chrome, IE, etc are not yet tested)</li>
+	<li>Have Fun</li>
+</ol>
+
 <h1>Core Gameplay Mechanics Brief</h1>
   <h3>Keyboard</h3>
 <ul>
